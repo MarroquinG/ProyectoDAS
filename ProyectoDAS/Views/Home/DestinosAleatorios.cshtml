@@ -1,0 +1,33 @@
+﻿@model List<ProyectoDAS.Models.Destinos>
+@{
+    ViewBag.Title = "Destinos Aleatorios";
+}
+
+<h2>Destinos Aleatorios</h2>
+<label for="titulo">@Html.ActionLink("Lista Destinos", "ListarDestinos")</label>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Pais</th>
+            <th>Imagen</th>
+            <th>Requisitos</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var destino in Model)
+        {
+        <tr>
+            <td>@destino.Nombre</td>
+            <td>@destino.Pais</td>
+            <td><img src="@destino.ImagenURL" alt="Poster" style="max-width: 100px;"></td>
+            <td>@destino.Requisitos</td>
+            <td>
+                @Html.ActionLink("Detalles", "DetallesDestino", new { destinoID = destino.DestinoID })
+                @Html.ActionLink("Reservar", "ReservarDestino", new { destinoID = destino.DestinoID, usuarioID = 1 }) <!-- Reemplaza 1 con el ID del usuario actual -->
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

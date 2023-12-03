@@ -1,0 +1,49 @@
+﻿@model List<ProyectoDAS.Models.Destinos>
+
+@{
+    ViewBag.Title = "Listar Destinos";
+}
+
+<h2>Listar Destinos</h2>
+
+@using (Html.BeginForm("ListarDestinos", "Home", FormMethod.Get))
+{
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre">
+
+    <label for="pais">Pais:</label>
+    <input type="text" name="pais">
+
+    <input type="submit" value="Buscar">
+
+    <label for="titulo">@Html.ActionLink("Mis Reservas", "VerReservas")</label>
+    <label for="titulo">@Html.ActionLink("Destinos Aleatorios", "DestinosAleatorios")</label>
+    <label for="titulo">@Html.ActionLink("Busquedas Recientes", "BusquedasRecientes")</label>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Pais</th>
+            <th>Requisitos</th>
+            <th>Requisitos</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var destino in Model)
+        {
+            <tr>
+                <td>@destino.Nombre</td>
+                <td>@destino.Pais</td>
+                <td><img src="@destino.ImagenURL" alt="Poster" style="max-width: 100px;"></td>
+                <td>@destino.Requisitos</td>
+                <td>
+                    @Html.ActionLink("Detalles", "DetallesDestino", new { destinoID = destino.DestinoID })
+                    @Html.ActionLink("Reservar", "ReservarDestino", new { destinoID = destino.DestinoID, usuarioID = 1 }) <!-- Reemplaza 1 con el ID del usuario actual -->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

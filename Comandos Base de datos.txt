@@ -1,0 +1,51 @@
+script base de datos
+
+-- Crear la base de datos
+CREATE DATABASE AgenciaDeViaje;
+
+-- Usar la base de datos
+USE AgenciaDeViaje;
+
+-- Crear la tabla Usuarios
+CREATE TABLE Usuarios (
+    UsuarioID INT PRIMARY KEY IDENTITY(1,1),
+    NombreUsuario NVARCHAR(50) NOT NULL,
+    Contraseña VARCHAR(50) NOT NULL,
+    TipoUsuario VARCHAR(20) NOT NULL
+);
+
+-- Crear la tabla Destinos
+CREATE TABLE Destinos (
+    DestinoID INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL,
+	ImagenURL NVARCHAR(50) NOT NULL,
+    Pais NVARCHAR(50) NOT NULL,
+	Requisitos NVARCHAR(50) NOT NULL
+
+);
+
+-- Crear la tabla Actividades
+CREATE TABLE Actividades (
+    ActividadID INT PRIMARY KEY IDENTITY(1,1),
+    DestinoID INT FOREIGN KEY REFERENCES Destinos(DestinoID),
+    Nombre NVARCHAR(100) NOT NULL,
+	TipoActividad NVARCHAR(100) NOT NULL,
+    Dias INT NOT NULL,
+    Precio DECIMAL(10, 2) NOT NULL
+);
+
+-- Crear la tabla Reservas
+CREATE TABLE Reservas (
+    ReservaID INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioID INT FOREIGN KEY REFERENCES Usuarios(UsuarioID),
+    DestinoID INT FOREIGN KEY REFERENCES Destinos(DestinoID),
+    FechaReserva DATETIME NOT NULL
+);
+
+-- Crear la tabla DestinosBuscados
+CREATE TABLE DestinosBuscados (
+    DestinoBuscadoID INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioID INT FOREIGN KEY REFERENCES Usuarios(UsuarioID),
+    DestinoID INT FOREIGN KEY REFERENCES Destinos(DestinoID),
+    FechaBusqueda DATETIME NOT NULL
+);

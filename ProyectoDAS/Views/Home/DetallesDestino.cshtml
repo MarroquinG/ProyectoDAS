@@ -1,0 +1,24 @@
+﻿@model ProyectoDAS.Models.Destinos
+@{
+    ViewBag.Title = "Detalles Destino";
+}
+
+<h2>Detalles del Destino</h2>
+
+<label for="titulo">@Html.ActionLink("Mis Reservas", "VerReservas")</label>
+<label for="titulo">@Html.ActionLink("Lista Destinos", "ListarDestinos")</label>
+<label for="titulo">@Html.ActionLink("Busquedas Recientes", "BusquedasRecientes")</label>
+<div>
+    <h3>@Model.Nombre</h3>
+    <p>País: @Model.Pais</p>
+    <p>Requisitos: @Model.Requisitos</p>
+    <p>Imagen: <img src="@Model.ImagenURL" alt="Imagen del Destino"></p>
+</div>
+
+<h3>Actividades</h3>
+<ul>
+    @foreach (var actividad in ViewBag.Actividades)
+    {
+        <li>@actividad.Nombre - Tipo: @actividad.TipoActividad, Días: @actividad.Dias, Precio: @actividad.Precio</li>
+    }
+</ul>

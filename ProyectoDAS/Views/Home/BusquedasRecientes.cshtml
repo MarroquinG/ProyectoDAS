@@ -1,0 +1,28 @@
+﻿@model List<ProyectoDAS.Models.DestinosBuscados>
+@{
+    ViewBag.Title = "Búsquedas Recientes";
+}
+
+<h2>Búsquedas Recientes</h2>
+<label for="titulo">@Html.ActionLink("Lista Destinos", "ListarDestinos")</label>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Destino</th>
+            <th>Imagen</th>
+            <th>Fecha de Búsqueda</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var busqueda in Model)
+        {
+        <tr>
+            <td>@busqueda.UsuarioNombre</td>
+            <td>@busqueda.DestinoNombre</td>
+            <td><img src="@busqueda.imagen" alt="Poster" style="max-width: 100px;"></td>
+            <td>@busqueda.FechaBusqueda</td>
+        </tr>
+        }
+    </tbody>
+</table>

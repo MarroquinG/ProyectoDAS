@@ -1,0 +1,33 @@
+﻿@model List<ProyectoDAS.Models.Reservas>
+@{
+    ViewBag.Title = "Ver Reservas";
+}
+
+<h2>Reservas</h2>
+
+<label for="titulo">@Html.ActionLink("Lista Destinos", "ListarDestinos")</label>
+
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ReservaID</th>
+            <th>UsuarioNombre</th>
+            <th>DestinoNombre</th>
+            <th>Imagen Destino</th>
+            <th>FechaReserva</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.ReservaID</td>
+                <td>@reserva.UsuarioNombre</td>
+                <td>@reserva.DestinoNombre</td>
+                <td><img src="@reserva.Imagen" alt="Poster" style="max-width: 100px;"></td>
+                <td>@reserva.FechaReserva</td>
+            </tr>
+        }
+    </tbody>
+</table>
